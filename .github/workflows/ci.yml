@@ -1,0 +1,56 @@
+name: CI Workflow
+
+on:
+  push:
+    branches:
+      - main       
+  workflow_dispatch:  
+
+jobs:
+  build:
+    runs-on: ubuntu-latest   
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3  
+
+    - name: Set up environment
+      run: |
+        echo "Setting up environment..."
+
+    - name: Install dependencies
+      run: |
+        echo "Installing dependencies..."
+        sudo apt-get update   # Встановлення необхідних бібліотек або ПЗ для вашого проєкту
+        
+    - name: Clone the project
+      run: git clone https://github.com/hola2005/my-ci-repo.git  
+
+    - name: Download dependencies
+      run: |
+        echo "Downloading dependencies..."
+        # Додайте команду для установки залежностей
+        # Наприклад, для Python:
+        # pip install -r requirements.txt
+
+    - name: Build project
+      run: |
+        echo "Building the project..."
+        # Додайте команду для складання вашого проєкту
+
+    - name: Run unit tests
+      run: |
+        echo "Running unit tests..."
+        # Виконання ваших тестів:
+        # Наприклад, для Python:
+        # pytest
+
+    - name: Push changes (if any)
+      run: |
+        echo "Pushing changes..."
+        git add .
+        git commit -m "Automated commit"
+        git push origin main
+
+    - name: Confirm execution
+      run: echo "CI Workflow completed!"
